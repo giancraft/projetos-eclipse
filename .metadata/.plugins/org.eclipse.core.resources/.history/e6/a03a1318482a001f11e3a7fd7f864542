@@ -1,0 +1,11 @@
+package decorator;
+
+public class JanelaSimples extends Janela {
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

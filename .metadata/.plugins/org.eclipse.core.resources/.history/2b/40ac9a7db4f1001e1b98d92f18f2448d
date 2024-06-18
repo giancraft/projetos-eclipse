@@ -1,0 +1,15 @@
+package listas_duplamente_encadeadas;
+
+public class testeListaDuplaEncadeade {
+
+	public static void main(String[] args) {
+		ListaDuplamenteEncadeada lista = new ListaDuplamenteEncadeada();
+		
+		lista.inserirInicio(2);
+		lista.inserirInicio(5);
+		
+		lista.mostrarLista();
+
+	}
+
+}

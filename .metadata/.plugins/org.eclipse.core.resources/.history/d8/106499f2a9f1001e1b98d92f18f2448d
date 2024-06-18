@@ -1,0 +1,26 @@
+package atv6;
+
+public class Main {
+
+	public static void main(String[] args) {
+		ListaCircular lista1 = new ListaCircular();
+		ListaCircular lista2 = new ListaCircular();
+		
+		lista1.inserirInicio(4);
+		lista1.inserirInicio(2);
+		lista1.inserirInicio(6);
+		
+		lista2.inserirInicio(8);
+		lista2.inserirInicio(2);
+		lista2.inserirInicio(5);
+		lista2.inserirInicio(4);
+		
+		lista1.ordenaLista();
+		System.out.println();
+		lista2.ordenaLista();
+		
+		//lista1.juntaListas(lista1, lista2);
+
+	}
+
+}

@@ -1,0 +1,14 @@
+package composite;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Zoo zoo = new Zoo();
+		
+		Zoo animais = new Zoo();
+		animais.addAnimal(new Cachorro());
+		animais.addAnimal(new Aguia());
+		
+	}
+
+}

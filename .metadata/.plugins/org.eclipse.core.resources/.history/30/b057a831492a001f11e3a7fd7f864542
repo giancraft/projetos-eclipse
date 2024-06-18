@@ -1,0 +1,14 @@
+package decorator;
+
+public class JanelaDecorator extends Janela {
+
+	@Override
+	public void draw() {
+		
+	}
+	protected Janela janelaDecorada;
+	
+	public JanelaDecorator(Janela janelaDecorada) {
+		this.janelaDecorada = janelaDecorada;
+	}
+}

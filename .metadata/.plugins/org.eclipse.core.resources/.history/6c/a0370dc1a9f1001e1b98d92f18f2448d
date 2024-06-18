@@ -1,0 +1,101 @@
+package atv6;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListaCircular {
+	private Nodo inicio;
+	private Nodo fim;
+	
+	public ListaCircular() {
+		inicio = null;
+	}
+	
+	public Nodo getInicio() {
+		return inicio;
+	}
+	
+	public void inserirInicio(int dado) {
+		Nodo novoNodo = new Nodo(dado);
+		if (inicio == null) {// caso lista esteja vazia
+			inicio = novoNodo;
+			inicio.setProx(inicio);
+			fim = inicio;
+		}  else {// caso lista não esteja vazia
+			novoNodo.setProx(inicio);
+			inicio = novoNodo;
+			fim.setProx(inicio);
+		}
+	}
+	
+	public String mostrarLista() {
+		String lista = "";
+		if (inicio == null) return lista;
+		Nodo aux = inicio;
+		do {
+			lista += aux.getDado() + "\n";
+			aux = aux.getProx();
+		} while(aux != inicio);
+		return lista;
+	}
+	
+	public int contadorLista() {
+		int count = 0;
+		Nodo aux = inicio;
+		do {
+			count++;
+			aux = aux.getProx();
+		} while (aux != inicio);
+		return count;
+	}
+	
+	public ListaCircular ordenaLista() {
+		List<Nodo> lista1 = new ArrayList<>();
+		Nodo aux = inicio;
+		do {
+			lista1.add(new Nodo(aux.getDado()));
+			aux = aux.getProx();
+		} while (aux != inicio);
+		
+		for (int i = 0; i < lista1.size() - 1; i++) {
+            for (int j = 0; j < lista1.size() - i - 1; j++) {
+                if (lista1.get(j).getDado() < lista1.get(j + 1).getDado()) {
+                    Nodo temp = lista1.get(j);
+                    lista1.set(j, lista1.get(j + 1));
+                    lista1.set(j + 1, temp);
+                }
+            }
+        }
+		
+		ListaCircular listaCircular = new ListaCircular();
+		
+		for (int i = 0; i < lista1.size(); i++) {
+			listaCircular.inserirInicio(lista1.get(i).getDado());
+		}
+		
+		aux = listaCircular.getInicio();
+		do {
+			System.out.println(aux.getDado());
+			aux = aux.getProx();
+		} while (aux != listaCircular.getInicio());
+		
+		return listaCircular;
+	}
+	
+	public void juntaListas(ListaCircular lista1, ListaCircular lista2) {
+		List<Nodo> juncao = new ArrayList<>();
+		lista1.ordenaLista();
+		lista2.ordenaLista();
+		Nodo aux = lista1.getInicio();
+		do {
+			juncao.add(new Nodo (aux.getDado()));
+			aux = aux.getProx();
+		} while (aux != lista1.getInicio());
+		
+		aux = lista2.getInicio();
+		do {
+			juncao.add(new Nodo (aux.getDado()));
+			aux = aux.getProx();
+		} while (aux != lista2.getInicio());
+	}
+}

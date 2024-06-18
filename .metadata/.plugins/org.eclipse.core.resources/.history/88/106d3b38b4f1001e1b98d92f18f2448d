@@ -1,0 +1,18 @@
+package listas_duplamente_encadeadas;
+
+public class ListaDuplamentoEncadeada {
+	private Nodo inicio;
+	private Nodo fim;
+	
+	public void inserirInicio(int dado) {
+		Nodo novo = new Nodo(dado);
+		if (inicio != null) {
+			inicio.setAnt(novo);
+			novo.setProx(inicio);
+		}
+		inicio = novo;
+		if (fim == null) {
+			fim = novo;
+		}
+	}
+}

@@ -1,0 +1,87 @@
+package atv6;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListaCircular {
+	private Nodo inicio;
+	private Nodo fim;
+	
+	public ListaCircular() {
+		inicio = null;
+	}
+	
+	public Nodo getInicio() {
+		return inicio;
+	}
+	
+	public void inserirInicio(int dado) {
+		Nodo novoNodo = new Nodo(dado);
+		if (inicio == null) {// caso lista esteja vazia
+			inicio = novoNodo;
+			inicio.setProx(inicio);
+			fim = inicio;
+		}  else {// caso lista não esteja vazia
+			novoNodo.setProx(inicio);
+			inicio = novoNodo;
+			fim.setProx(inicio);
+		}
+	}
+	
+	public String mostrarLista() {
+		String lista = "";
+		if (inicio == null) return lista;
+		Nodo aux = inicio;
+		do {
+			lista += aux.getDado() + "\n";
+			aux = aux.getProx();
+		} while(aux != inicio);
+		return lista;
+	}
+	
+	public int contadorLista() {
+		int count = 0;
+		Nodo aux = inicio;
+		do {
+			count++;
+			aux = aux.getProx();
+		} while (aux != inicio);
+		return count;
+	}
+	
+	public void juntaListas(ListaCircular lista1, ListaCircular lista2) {
+		List<Integer> juncao = new ArrayList<>();
+		Nodo aux = lista1.getInicio();
+		Nodo aux2 = lista2.getInicio();
+		do {
+	        if (aux.getDado() < aux2.getDado()) {
+	            juncao.add(aux.getDado());
+	            aux = aux.getProx();
+	            if (aux == lista1.getInicio()) break; 
+	        } else if (aux.getDado() > aux2.getDado()) {
+	            juncao.add(aux2.getDado());
+	            aux2 = aux2.getProx();
+	            if (aux2 == lista2.getInicio()) break; 
+	        } else { 
+	            juncao.add(aux.getDado());
+	            aux = aux.getProx();
+	            aux2 = aux2.getProx();
+	            if (aux == lista1.getInicio() && aux2 == lista2.getInicio()) break; 
+	        }
+	    } while (true);
+
+	    
+	    while (aux != lista1.getInicio()) {
+	        juncao.add(aux.getDado());
+	        aux = aux.getProx();
+	    }
+
+	    
+	    while (aux2 != lista2.getInicio()) {
+	        juncao.add(aux.getDado());
+	        aux2 = aux2.getProx();
+	    }
+		 	 
+		System.out.println("A juncao das listas é: " + juncao);
+	}
+}
